@@ -1,0 +1,3 @@
+import CompareCircuits
+CompareCircuits.run()
+
