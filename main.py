@@ -1,3 +1,2 @@
-import CompareCircuits
-CompareCircuits.run()
-
+import CircuitExperimenter as ce
+ce.run()

@@ -1,6 +1,7 @@
 import QCircuitTools as qct
 from matplotlib import pyplot
 from qiskit.providers.aer import AerSimulator
+from qiskit import visualization as vs
 #import math
 
 def run():
@@ -18,9 +19,13 @@ def run():
     circuitManager.simulate(AerSimulator(), 1000)
 
     # Draw the circuit
-    circuit.draw(output='mpl')
+    fig = pyplot.figure()
+    plta = fig.add_subplot(2,1,1)
+    circuit.draw(output='mpl', ax=plta)
     pyplot.get_current_fig_manager().set_window_title('Circuit')
     circuitManager.printEntanglementTable()
     circuitManager.printEntanglements()
-    pyplot.show(block=True)
+    pltb = fig.add_subplot(2,1,2)
+    vs.plot_histogram(circuitManager.counts, ax=pltb)
+    pyplot.show()
 
