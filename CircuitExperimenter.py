@@ -21,13 +21,13 @@ def run():
 
 
     print('\n+++++++\n')
-    cm.printQubitStates()
+    print(cm.printQubitStates())
     print('\n+++++++\n')
-    cm.printTable()
+    print(cm.printTable())
     print('\n+++++++\n')
-    cm.printTable(allStates=True)
+    print(cm.printTable(allStates=True))
     print('\n+++++++\n')
-    cm.printEntanglementTable()
+    print(cm.printEntanglementTable())
     cm.printEntanglements()
     print('\n+++++++\n')
 

@@ -173,6 +173,25 @@ class CircuitManager:
 
         print(outstr)
 
+        out = outstr.split('\n')
+
+        outstr = "<table>" + '\n'
+        for i in range(0, len(out)):
+            outstr += "<tr>" + '\n'
+            if i == 0:
+                spacer = "th class='fancy'"
+                endspacer = "th"
+            else:
+                spacer = "td"
+                endspacer = "td"
+            items = out[i].split('|')[1:-1]
+            for item in items:
+                outstr += "<" + spacer + ">" + item.replace(' ', '') + "</" + endspacer + ">" + '\n'
+            out += "</tr>" + '\n'
+        outstr += "</table>"
+        return outstr
+
+
     def multiGraph3D(self, x, y, colored=True, min_tol = 0.05, block=True):
         fig = pyplot.figure()
         plt = fig.add_subplot(111, projection="3d")
@@ -489,6 +508,35 @@ class CircuitManager:
             if row == printtable[0]:
                 print("-" * len(row))
 
+        outstr = "<table>" + '\n'
+
+        for i in range(0, len(out)):
+            outstr += "<tr>" + '\n'
+            if i == 0:
+                spacer = "th class='fancy'"
+                endspacer = "th"
+            else:
+                spacer = "td"
+                endspacer = "td"
+            for item in out[i]:
+                c = ""
+                if '%' in item:
+                    val = int(item[:-1])
+                    if val < tol * 100:
+                        c = "class='e_neg'"
+                    if val > 100 - (tol * 100):
+                        c = "class='e_pos'"
+                elif '*' in item:
+                    val = int(item[:-1])
+                    if val < tol * 100:
+                        c = "class='e_neg_alt'"
+                    if val > 100 - (tol * 100):
+                        c = "class='e_pos_alt'"
+                outstr += "<" + spacer + " " + c + ">" + item + "</" + endspacer + ">" + '\n'.replace("*", "%")
+            out += "</tr>" + '\n'
+        outstr += "</table>"
+        return outstr
+
     def printEntanglements(self, tol = 0.05, useTrueEntanglement=True):
         states = expand(self.counts)
         for y in self.measures:
@@ -543,9 +591,9 @@ class CircuitManager:
         #html table
         out = "<table>" + '\n'
         out += "<tr>" + '\n'
-        out += "<th>Measure</th>" + '\n'
-        out += "<th>0</th>" + '\n'
-        out += "<th>1</th>" + '\n'
+        out += "<th class='fancy'>Measure</th>" + '\n'
+        out += "<th class='fancy'>0</th>" + '\n'
+        out += "<th class='fancy'>1</th>" + '\n'
         out += "</tr>" + '\n'
 
         for i in range(0, len(self.measures)):
