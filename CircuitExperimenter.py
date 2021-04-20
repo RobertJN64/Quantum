@@ -37,7 +37,7 @@ def run():
     if input("Save Expirement: ") == "y":
         fullHTML = "<html><head>"
 
-        with open("style.txt") as f:
+        with open("Test-Files/style.txt") as f:
             style = f.readlines()
         for line in style:
             fullHTML += line
@@ -51,10 +51,10 @@ def run():
         expirementDesc = input("Description: ")
         fullHTML += "<p>" + expirementDesc + "</p>" + '\n'
         if input("Save Circuit Image: ") == "y":
-            figb.savefig(expirementName + '/circuit')
+            figb.savefig("Test-Files/" + expirementName + '/circuit')
             fullHTML += "<img width=50% src='circuit.png'><br>" + '\n'
         if input("Save Histogram: ") == "y":
-            figa.savefig(expirementName + '/histogram')
+            figa.savefig("Test-Files/" + expirementName + '/histogram')
             fullHTML += "<img width=50% src='histogram.png'><br>" + '\n'
         if input("Qubit State Table: ") == "y":
             fullHTML += qStateHTML + '<br>'
@@ -64,11 +64,11 @@ def run():
             else:
                 fullHTML += tableHTML + '<br>'
         if input("Entanglement Table: ") == "y":
-            fullHTML += eTableHTML + entanglements
+            fullHTML += eTableHTML + entanglements + '<br>'
 
         fullHTML += "</body></html>"
 
-        with open(expirementName + "/report.html", "w") as f:
+        with open("Test-Files/" + expirementName + "/report.html", "w") as f:
             f.write(fullHTML)
 
 

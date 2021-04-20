@@ -186,7 +186,7 @@ class CircuitManager:
                 endspacer = "td"
             items = out[i].split('|')[1:-1]
             for item in items:
-                outstr += "<" + spacer + ">" + item.replace(' ', '') + "</" + endspacer + ">" + '\n'
+                outstr += "<" + spacer + ">" + item.strip() + "</" + endspacer + ">" + '\n'
             out += "</tr>" + '\n'
         outstr += "</table>"
         return outstr
@@ -534,8 +534,10 @@ class CircuitManager:
                         c = "class='e_neg_alt'"
                     if val > 100 - (tol * 100):
                         c = "class='e_pos_alt'"
-                else:
+                elif '-' not in item:
                     bonus = " class='fancy'"
+                else:
+                    bonus = ""
                 outstr += "<" + spacer + bonus + " " + c + ">" + item + "</" + endspacer + ">" + '\n'.replace("*", "%")
             out += "</tr>" + '\n'
         outstr += "</table>"

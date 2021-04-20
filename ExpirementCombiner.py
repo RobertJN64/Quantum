@@ -2,7 +2,7 @@ def run():
     fullreport = "<html><head>"
     #region style
 
-    with open("style.txt") as f:
+    with open("Test-Files/style.txt") as f:
         style = f.readlines()
     for line in style:
         fullreport += line
@@ -13,6 +13,7 @@ def run():
         exps = f.readlines()
 
     for exp in exps:
+        exp = exp.strip('\n')
         with open("Test-Files/" + exp + "/report.html") as f:
             report = ''.join(f.readlines())
 
