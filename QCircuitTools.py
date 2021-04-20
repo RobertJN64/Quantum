@@ -513,7 +513,7 @@ class CircuitManager:
         for i in range(0, len(out)):
             outstr += "<tr>" + '\n'
             if i == 0:
-                spacer = "th class='fancy'"
+                spacer = "th"
                 endspacer = "th"
             else:
                 spacer = "td"
@@ -521,23 +521,28 @@ class CircuitManager:
             for item in out[i]:
                 c = ""
                 if '%' in item:
+                    bonus = ""
                     val = int(item[:-1])
                     if val < tol * 100:
                         c = "class='e_neg'"
                     if val > 100 - (tol * 100):
                         c = "class='e_pos'"
                 elif '*' in item:
+                    bonus = ""
                     val = int(item[:-1])
                     if val < tol * 100:
                         c = "class='e_neg_alt'"
                     if val > 100 - (tol * 100):
                         c = "class='e_pos_alt'"
-                outstr += "<" + spacer + " " + c + ">" + item + "</" + endspacer + ">" + '\n'.replace("*", "%")
+                else:
+                    bonus = " class='fancy'"
+                outstr += "<" + spacer + bonus + " " + c + ">" + item + "</" + endspacer + ">" + '\n'.replace("*", "%")
             out += "</tr>" + '\n'
         outstr += "</table>"
         return outstr
 
     def printEntanglements(self, tol = 0.05, useTrueEntanglement=True):
+        out = []
         states = expand(self.counts)
         for y in self.measures:
             for x in self.measures:
@@ -547,9 +552,13 @@ class CircuitManager:
                     ypos = len(self.measures) - 1 - self.measures.index(y)
                     dif = difference(states,xpos,ypos)
                     if dif < tol:
+                        out.append("<p>" + x + " is inverse entangled with " + y + "</p>")
                         print(x, "is inverse entangled with", y)
                     if dif > 1 - tol:
+                        out.append("<p>" + x + " is entangled with " + y + "</p>")
                         print(x, "is entangled with", y)
+
+        return '\n'.join(out)
 
     def printQubitStates(self):
         total = 0

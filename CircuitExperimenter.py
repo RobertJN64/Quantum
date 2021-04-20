@@ -1,5 +1,6 @@
 import TestCircuit
 import matplotlib.pyplot as pyplot
+import os
 
 def run():
     cm = TestCircuit.circuitManager()
@@ -21,15 +22,53 @@ def run():
 
 
     print('\n+++++++\n')
-    print(cm.printQubitStates())
+    qStateHTML = cm.printQubitStates()
     print('\n+++++++\n')
-    print(cm.printTable())
+    tableHTML = cm.printTable()
     print('\n+++++++\n')
-    print(cm.printTable(allStates=True))
+    fulltableHTML = cm.printTable(allStates=True)
     print('\n+++++++\n')
-    print(cm.printEntanglementTable())
-    cm.printEntanglements()
+    eTableHTML = cm.printEntanglementTable()
+    entanglements = cm.printEntanglements()
     print('\n+++++++\n')
 
-    #pyplot.show()
+    pyplot.show()
+
+    if input("Save Expirement: ") == "y":
+        fullHTML = "<html><head>"
+
+        with open("style.txt") as f:
+            style = f.readlines()
+        for line in style:
+            fullHTML += line
+
+        fullHTML += "</head><body>"
+
+        expirementName = input("Expirement Name: ")
+        fullHTML += "<h1>" + expirementName + "</h1>" + '\n'
+        expirementName = expirementName.replace(" ", "_").replace("/", "-")
+        os.mkdir("Test-Files/" + expirementName)
+        expirementDesc = input("Description: ")
+        fullHTML += "<p>" + expirementDesc + "</p>" + '\n'
+        if input("Save Circuit Image: ") == "y":
+            figb.savefig(expirementName + '/circuit')
+            fullHTML += "<img width=50% src='circuit.png'><br>" + '\n'
+        if input("Save Histogram: ") == "y":
+            figa.savefig(expirementName + '/histogram')
+            fullHTML += "<img width=50% src='histogram.png'><br>" + '\n'
+        if input("Qubit State Table: ") == "y":
+            fullHTML += qStateHTML + '<br>'
+        if input("State Table: ") == "y":
+            if input("Full: ") == "y":
+                fullHTML += fulltableHTML + '<br>'
+            else:
+                fullHTML += tableHTML + '<br>'
+        if input("Entanglement Table: ") == "y":
+            fullHTML += eTableHTML + entanglements
+
+        fullHTML += "</body></html>"
+
+        with open(expirementName + "/report.html", "w") as f:
+            f.write(fullHTML)
+
 

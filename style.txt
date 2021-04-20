@@ -1,0 +1,28 @@
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #000000;
+  padding: 8px;
+  text-align: center;
+}
+.fancy {
+  background-color: #4CAF50;
+}
+.e_pos {
+   color: green;
+}
+.e_neg {
+    color: blue;
+}
+.e_pos_alt {
+    color: red;
+}
+.e_pos_neg {
+    color: red;
+}
+div {border: 2px;border-color: black;border-radius: 5px;border-style: solid; padding-left: 10px; margin-bottom: 5px}
+</style>
