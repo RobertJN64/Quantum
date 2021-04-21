@@ -1,9 +1,13 @@
-mode = input("Mode: ")
+#region Expirements
+#mode = input("Mode: ")
 
-if mode == "e":
-    import CircuitExperimenter
-    CircuitExperimenter.run()
+#if mode == "e":
+#    import CircuitExperimenter
+#    CircuitExperimenter.run()
 
-elif mode == "c":
-    import ExpirementCombiner
-    ExpirementCombiner.run()
+#elif mode == "c":
+#    import ExpirementCombiner
+#    ExpirementCombiner.run()
+#endregion
+import GroverAlg
+GroverAlg.run_tester()

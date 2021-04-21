@@ -1,0 +1,256 @@
+<html><head><style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #000000;
+  padding: 8px;
+  text-align: center;
+}
+.fancy {
+  background-color: #4CAF50;
+}
+.e_pos {
+   color: green;
+}
+.e_neg {
+    color: blue;
+}
+.e_pos_alt {
+    color: red;
+}
+.e_pos_neg {
+    color: red;
+}
+div {border: 2px;border-color: black;border-radius: 5px;border-style: solid; padding-left: 10px; margin-bottom: 5px}
+</style></body><div><h1>Independent H-Gates</h1>
+<p>The two H Gates create qubits with a 50% chance of collapsing to 1. The bits are not correlated.</p>
+<img width=50% src='Test-Files/Independent_H-Gates/circuit.png'><br>
+<img width=50% src='Test-Files/Independent_H-Gates/histogram.png'><br>
+<table>
+<tr>
+<th class='fancy'>Measure</th>
+<th class='fancy'>0</th>
+<th class='fancy'>1</th>
+</tr>
+<tr>
+<td>Qubit #0</td>
+<td>49%</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>Qubit #1</td>
+<td>51%</td>
+<td>49%</td>
+</tr>
+</table><br><table>
+<tr>
+<th class='fancy'>Qubit#0</th>
+<th class='fancy'>Qubit#1</th>
+<th class='fancy'>%</th>
+<tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>24%</td>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>25%</td>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>26%</td>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>24%</td>
+<tr>
+</table><br><table>
+<tr>
+<th class='fancy' >E Table</th>
+<th class='fancy' >Qubit #1</th>
+<tr>
+<td class='fancy' >Qubit #0</td>
+<td >48%</td>
+</table><br></div><div><h1>Belle Test</h1>
+<p>We can entangle the qubits using a cx (controlled not) gate.</p>
+<img width=50% src='Test-Files/Belle_Test/circuit.png'><br>
+<img width=50% src='Test-Files/Belle_Test/histogram.png'><br>
+<table>
+<tr>
+<th class='fancy'>Measure</th>
+<th class='fancy'>0</th>
+<th class='fancy'>1</th>
+</tr>
+<tr>
+<td>Qubit #0</td>
+<td>52%</td>
+<td>48%</td>
+</tr>
+<tr>
+<td>Qubit #1</td>
+<td>52%</td>
+<td>48%</td>
+</tr>
+</table><br><table>
+<tr>
+<th class='fancy'>Qubit#0</th>
+<th class='fancy'>Qubit#1</th>
+<th class='fancy'>%</th>
+<tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>52%</td>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0%</td>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0%</td>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>48%</td>
+<tr>
+</table><br><table>
+<tr>
+<th class='fancy' >E Table</th>
+<th class='fancy' >Qubit #1</th>
+<tr>
+<td class='fancy' >Qubit #0</td>
+<td class='e_pos'>100%</td>
+</table><p>Qubit #0 is entangled with Qubit #1</p></div><div><h1>Preserving Entanglement</h1>
+<p>Even if we add new H-Gates to the end of the circuit, the entanglement is preserved.</p>
+<img width=50% src='Test-Files/Preserving_Entanglement/circuit.png'><br>
+<img width=50% src='Test-Files/Preserving_Entanglement/histogram.png'><br>
+<table>
+<tr>
+<th class='fancy'>Measure</th>
+<th class='fancy'>0</th>
+<th class='fancy'>1</th>
+</tr>
+<tr>
+<td>Qubit #0</td>
+<td>49%</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>Qubit #1</td>
+<td>49%</td>
+<td>51%</td>
+</tr>
+</table><br><table>
+<tr>
+<th class='fancy'>Qubit#0</th>
+<th class='fancy'>Qubit#1</th>
+<th class='fancy'>%</th>
+<tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>49%</td>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>51%</td>
+<tr>
+</table><br><table>
+<tr>
+<th class='fancy' >E Table</th>
+<th class='fancy' >Qubit #1</th>
+<tr>
+<td class='fancy' >Qubit #0</td>
+<td class='e_pos'>100%</td>
+</table><p>Qubit #0 is entangled with Qubit #1</p></div><div><h1>Destroying Entanglement</h1>
+<p>Measuring the qubit before the cnot gate breaks the entanglement.</p>
+<img width=50% src='Test-Files/Destroying_Entanglement/circuit.png'><br>
+<img width=50% src='Test-Files/Destroying_Entanglement/histogram.png'><br>
+<table>
+<tr>
+<th class='fancy'>Measure</th>
+<th class='fancy'>0</th>
+<th class='fancy'>1</th>
+</tr>
+<tr>
+<td>Qubit #0</td>
+<td>49%</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>Qubit #1</td>
+<td>52%</td>
+<td>48%</td>
+</tr>
+<tr>
+<td>PreMeasure</td>
+<td>51%</td>
+<td>49%</td>
+</tr>
+</table><br><table>
+<tr>
+<th class='fancy'>Qubit#0</th>
+<th class='fancy'>Qubit#1</th>
+<th class='fancy'>PreMeasure</th>
+<th class='fancy'>%</th>
+<tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>11%</td>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>13%</td>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>14%</td>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>14%</td>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>13%</td>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>10%</td>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>11%</td>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>13%</td>
+<tr>
+</table><br><table>
+<tr>
+<th class='fancy' >E Table</th>
+<th class='fancy' >Qubit #1</th>
+<th class='fancy' >PreMeasure</th>
+<tr>
+<td class='fancy' >Qubit #0</td>
+<td >54%</td>
+<td >48*</td>
+<tr>
+<td class='fancy' >Qubit #1</td>
+<td class='fancy' >-</td>
+<td >52%</td>
+</table><br></div></body></html>

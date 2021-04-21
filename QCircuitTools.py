@@ -58,14 +58,16 @@ def countStates(counts, measures):
     return qStates
 
 class CircuitManager:
-    def __init__(self, qubits, measures=None, qMeasures=None):
+    def __init__(self, qubits, measures=None, qMeasures=None, override_cbits=None):
         self.qubits = qubits
         if measures is None:
             measures = []
         if qMeasures is None:
             qMeasures = [None] * qubits
         self.measures = []
-        for i in range(0, qubits):
+        if override_cbits is None:
+            override_cbits = qubits
+        for i in range(0, override_cbits):
             if qMeasures[i] is None:
                 self.measures.append("Qubit #" + str(i))
             else:
