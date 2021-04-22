@@ -2,6 +2,8 @@ import matplotlib.pyplot as pyplot
 import numpy as np
 import QCircuitTools as qct
 from qiskit.circuit import QuantumCircuit
+from qiskit.quantum_info import Statevector
+from qiskit.visualization import plot_state_qsphere
 
 class GroverCircuit:
     def __init__(self, qubits, bonus_q = 0, measures=None, qmeasures=None):
@@ -73,7 +75,7 @@ def run():
     c.circuit.append(diffuser(4), [0,1,2,3])
 
     #do it again
-    # construct oracle
+    #construct oracle
     c.circuit.barrier()
     c.circuit.append(sudokuOracle(), [0, 1, 2, 3, 4, 5, 6, 7])
     c.circuit.mct([4, 5, 6, 7], 8)
@@ -83,6 +85,10 @@ def run():
     c.circuit.append(diffuser(4), [0,1,2,3])
 
     c.circuit.barrier()
+
+    state = Statevector.from_instruction(c.circuit)
+    print(state)
+    plot_state_qsphere(state)
     measureInRange(c.cm, 0, 4)
     c.cm.simulate()
     print(c.cm.counts)

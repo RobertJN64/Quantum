@@ -540,7 +540,7 @@ class CircuitManager:
                     bonus = " class='fancy'"
                 else:
                     bonus = ""
-                outstr += "<" + spacer + bonus + " " + c + ">" + item + "</" + endspacer + ">" + '\n'.replace("*", "%")
+                outstr += ("<" + spacer + bonus + " " + c + ">" + item + "</" + endspacer + ">" + '\n').replace("*", "%")
             out += "</tr>" + '\n'
         outstr += "</table>"
         return outstr

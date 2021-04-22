@@ -10,4 +10,4 @@
 #    ExpirementCombiner.run()
 #endregion
 import GroverAlg
-GroverAlg.run_tester()
+GroverAlg.run()
