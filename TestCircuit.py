@@ -1,12 +1,9 @@
 import QCircuitTools as qct
+#from math import pi
 
 def circuitManager():
-    cm = qct.CircuitManager(2, ["PreMeasure"])
+    cm = qct.CircuitManager(0)
     c = cm.circuit
     c.h(0)
-    cm.measure(0, "PreMeasure")
-    c.cx(0, 1)
-    c.h(0)
-    c.h(1)
     cm.measureAll()
     return cm

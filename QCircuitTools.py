@@ -114,7 +114,7 @@ class CircuitManager:
         if self.provider is None:
             self.provider = IBMQ.load_account()
 
-        return least_busy(self.provider.backends(filters=lambda x: x.configuration().n_qubits >= 5
+        return least_busy(self.provider.backends(filters=lambda x: x.configuration().n_qubits >= self.qubits
                                                                    and not x.configuration().simulator
                                                                    and x.status().operational == True))
 
